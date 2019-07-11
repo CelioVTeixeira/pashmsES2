@@ -8,9 +8,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import Exception.*;
+
 public class CSVReaderdadosPacientes {
 	
-	Paciente lerdadospaciente(String csvFile2) throws FileNotFoundException, IOException {
+	Paciente lerdadospaciente(String csvFile2) throws FileNotFoundException, IOException, Exception {
 		
 		System.out.println("--------------------------------------------------------------------");	
       //  String csvFile2 = "D://Fichascsv/ficha.csv";
@@ -28,41 +30,44 @@ public class CSVReaderdadosPacientes {
             	String[] Linha = line2.split(cvsSplitBy2);
             //	System.out.println("lenght"+Linha.length);	
             	if(Linha[0].equals("Nome")) {
-            		if( Linha[1].length()>20 ||Linha[1].length()<3  ||(Linha[1].isEmpty() && Linha[1]==null)) {
-            			P.Nome_Pacient="error";
+            		if( Linha[1].length()>20 ||Linha[1].length()<3  ) {
+            			System.out.println("Passei aquiNOME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            			throw new ExceptionError_Nome();
             		}
             		else {
             		P.Nome_Pacient=Linha[1];
             		}
             	}
             	if(Linha[0].equals("Idade")) {
-            		if(Integer.parseInt(Linha[1])>130 || Integer.parseInt(Linha[1])<13 ||Linha[1].equals("")) {
-            			P.idade=-1;
+            		if((Linha[1].isEmpty() || Linha[1]==null)||Linha[1].equals(null)||Integer.parseInt(Linha[1])>130 || Integer.parseInt(Linha[1])<13 ) {
+            			System.out.println("Passei aquiIdade!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            			throw new ExceptionError_Idade();
+            			
             		}
             		else {
             			P.idade=Integer.parseInt(Linha[1]);
             		}
             	
-            		
+            	//	(Linha[1].isEmpty() || Linha[1].equals(null) || (Linha[1].isEmpty() || Linha[1].equals(null) || Linha[1].equals("")))
             	}
             	if(Linha[0].equals("Altura")) {
-            		if(Integer.parseInt(Linha[1])>250 ||Integer.parseInt(Linha[1])<50 ||Linha[1].equals("")) {
-            			P.DadosFisicos.Altura=-1;
-            		}
+            		if(Integer.parseInt(Linha[1])>250 ||Integer.parseInt(Linha[1])<50 ||(Linha[1].isEmpty() || Linha[1]==null)||Linha[1].equals(null)) {
+            			throw new ExceptionError_Altura();
+            			}
             		else {
             		P.DadosFisicos.Altura=Integer.parseInt(Linha[1]);
             		}
             	}
             	if(Linha[0].equals("Peso")) {
-            		if(Float.parseFloat(Linha[1])<18 ||Float.parseFloat(Linha[1])>600 ||Linha[1].equals("")) {
-            			P.DadosFisicos.peso=-1;
+            		if(Float.parseFloat(Linha[1])<18 ||Float.parseFloat(Linha[1])>600 ||(Linha[1].isEmpty() || Linha[1]==null)||Linha[1].equals(null)) {
+            			throw new ExceptionError_Peso();
             		}
             		else
             		P.DadosFisicos.peso=Float.parseFloat(Linha[1]);
             	}
             	if(Linha[0].equals("IMC")) {
-            		if(Float.parseFloat(Linha[1])<10 ||Float.parseFloat(Linha[1])>60 ||Linha[1].equals("")) {
-            		P.DadosFisicos.IMC=-1;
+            		if(Float.parseFloat(Linha[1])<10 ||Float.parseFloat(Linha[1])>60 ||(Linha[1].isEmpty() || Linha[1]==null)||Linha[1].equals(null)) {
+            			throw new ExceptionError_IMC();
             		}
             		else {
             			P.DadosFisicos.IMC=Float.parseFloat(Linha[1]);
@@ -70,59 +75,59 @@ public class CSVReaderdadosPacientes {
             		
             	}
             	if(Linha[0].equals("BF")) {
-            		if(Float.parseFloat(Linha[1])<0 ||Float.parseFloat(Linha[1])>85 ||Linha[1].equals("")) {
-            			P.DadosFisicos.B_F=-1;
+            		if(Float.parseFloat(Linha[1])<0 ||Float.parseFloat(Linha[1])>85 ||(Linha[1].isEmpty() || Linha[1]==null)||Linha[1].equals(null)) {
+            			throw new ExceptionError_BF();
             		}
             			else
             			P.DadosFisicos.B_F=Float.parseFloat(Linha[1]);
             	}
             	if(Linha[0].equals("Musculo")) {
-            		if(Float.parseFloat(Linha[1])<5 ||Float.parseFloat(Linha[1])>120 ||Linha[1].equals("")) 
-            		P.DadosFisicos.Musculo=Float.parseFloat(Linha[1]);
+            		if(Float.parseFloat(Linha[1])<5 ||Float.parseFloat(Linha[1])>120 ||(Linha[1].isEmpty() || Linha[1]==null)||Linha[1].equals(null)) 
+            		throw new ExceptionError_Musculo();
             		else
-            			P.DadosFisicos.Musculo=-1;
-            	}
+            			P.DadosFisicos.Musculo=Float.parseFloat(Linha[1]);
+            			}
             	if(Linha[0].equals("h2o")) {
-            		if(Float.parseFloat(Linha[1])<70 ||Float.parseFloat(Linha[1])>80 ||Linha[1].equals("")) {
-            		P.DadosFisicos.h20=-1;
+            		if(Float.parseFloat(Linha[1])<70 ||Float.parseFloat(Linha[1])>80 ||(Linha[1].isEmpty() || Linha[1]==null)||Linha[1].equals(null)){
+            			throw new ExceptionError_h2o();
             		}
             		else
             			P.DadosFisicos.h20=Float.parseFloat(Linha[1]);
             	}
             	if(Linha[0].equals("osso")) {
-            		if(Float.parseFloat(Linha[1])<-4 ||Float.parseFloat(Linha[1])>2 ||Linha[1].equals("")) {
-            			P.DadosFisicos.osso=-5;
+            		if(Float.parseFloat(Linha[1])<-4 ||Float.parseFloat(Linha[1])>2 ||(Linha[1].isEmpty() || Linha[1]==null)||Linha[1].equals(null)) {
+            			throw new ExceptionError_osso();
             		}	
             		else
             		P.DadosFisicos.osso=Float.parseFloat(Linha[1]);
             	}
             	if(Linha[0].equals("Idade_meta")) {
-            		if(Float.parseFloat(Linha[1])<13||Float.parseFloat(Linha[1])>100 ||Linha[1].equals("")) {
-            			P.DadosFisicos.Idade_Metabolica=-1;
-            		}
+            		if(Float.parseFloat(Linha[1])<13||Float.parseFloat(Linha[1])>100 ||(Linha[1].isEmpty() || Linha[1]==null)||Linha[1].equals(null)) {
+            			throw new ExceptionError_Idade_meta();
+            			}
             		else
             		P.DadosFisicos.Idade_Metabolica=Float.parseFloat(Linha[1]);
             	}
             	if(Linha[0].equals("Metablismo_basal")) {
-              		if(Float.parseFloat(Linha[1])<1.2 ||Float.parseFloat(Linha[1])>(2.1)||Linha[1].equals("")) {
-              			P.DadosFisicos.Metabolismo_basal=-1;
+              		if(Float.parseFloat(Linha[1])<1.2 ||Float.parseFloat(Linha[1])>(2.1)||(Linha[1].isEmpty() || Linha[1]==null)||Linha[1].equals(null)) {
+              			throw new ExceptionError_Metabolismo_basal();
               		}
               		else
          		P.DadosFisicos.Metabolismo_basal=Float.parseFloat(Linha[1]);
             	}
             	if(Linha[0].equals("Gordura_visceral")) {
-            		if(Float.parseFloat(Linha[1])<1||Float.parseFloat(Linha[1])>(70)||Linha[1].equals("")) {
-            			P.DadosFisicos.Gordura_Visceral=-1;
+            		if(Float.parseFloat(Linha[1])<1||Float.parseFloat(Linha[1])>(70)||(Linha[1].isEmpty() || Linha[1]==null)||Linha[1].equals(null)) {
+            			throw new ExceptionError_Gordura_visceral();
             		}
             		else
             		P.DadosFisicos.Gordura_Visceral=Float.parseFloat(Linha[1]);
             	}
             	if(Linha[0].equals("Profissao")) {
-            		if((Linha[1].isEmpty() && Linha[1]==null) ||Linha[1].length()>30||Linha[1].length()<7) {
-            			P.Profisao="Error";
-            			System.out.println("CSV:"+csvFile2);	
+            		if((Linha[1].isEmpty() || Linha[1]==null)||Linha[1].equals(null) ||Linha[1].length()>30||Linha[1].length()<7) {
+            			throw new ExceptionError_Profissao();
+            			//System.out.println("CSV:"+csvFile2);	
                 			
-            			System.out.println("DadosCLiente_Prof:"+P.getprof());	
+            			//System.out.println("DadosCLiente_Prof:"+P.getprof());	
             		
             		}
             		else {
@@ -133,8 +138,8 @@ public class CSVReaderdadosPacientes {
             		//P.Profisao=Linha[1];
             	}
             	if(Linha[0].equals("Sexo")) {
-            		if((Linha[1].isEmpty() && Linha[1]==null)||!Linha[1].equals("Masculino")||!Linha[1].equals("Feminino")) {
-            			P.sexo="error";
+            		if(Linha[1].isEmpty() || Linha[1]==null||Linha[1].equals(null)||!Linha[1].equals("Masculino")||!Linha[1].equals("Feminino")) {
+            			throw new ExceptionError_Sexo();
             		}
             		else {
             		P.sexo=Linha[1];
@@ -199,7 +204,7 @@ int iterator=0;
 	            	String[] Linha = line2.split(cvsSplitBy2);
 	            //	System.out.println("lenght"+Linha.length);	
 	            	if(Linha[0].equals("Nome")) {
-	            		if( Linha[1].length()>20 ||Linha[1].equals("")) {
+	            		if( Linha[1].length()>20 ||(Linha[1].isEmpty() || Linha[1].equals(null) || Linha[1].equals(""))) {
 	            			P.Nome_Pacient="error";
 	            		}
 	            		else {
@@ -207,7 +212,7 @@ int iterator=0;
 	            		}
 	            	}
 	            	if(Linha[0].equals("Idade")) {
-	            		if(Integer.parseInt(Linha[1])>130 ||Integer.parseInt(Linha[1])<13 ||Linha[1].equals("")) {
+	            		if(Integer.parseInt(Linha[1])>130 ||Integer.parseInt(Linha[1])<13 ||(Linha[1].isEmpty() || Linha[1].equals(null) || Linha[1].equals(""))) {
 	            			P.idade=-1;
 	            		}
 	            		else {
@@ -217,7 +222,7 @@ int iterator=0;
 	            		
 	            	}
 	            	if(Linha[0].equals("Altura")) {
-	            		if(Integer.parseInt(Linha[1])>250 ||Integer.parseInt(Linha[1])<50 ||Linha[1].equals("")) {
+	            		if(Integer.parseInt(Linha[1])>250 ||Integer.parseInt(Linha[1])<50 ||(Linha[1].isEmpty() || Linha[1].equals(null) || Linha[1].equals(""))) {
 	            			P.DadosFisicos.Altura=-1;
 	            		}
 	            		else {
@@ -225,14 +230,14 @@ int iterator=0;
 	            		}
 	            	}
 	            	if(Linha[0].equals("Peso")) {
-	            		if(Float.parseFloat(Linha[1])<18 ||Float.parseFloat(Linha[1])>600 ||Linha[1].equals("")) {
+	            		if(Float.parseFloat(Linha[1])<18 ||Float.parseFloat(Linha[1])>600 ||(Linha[1].isEmpty() || Linha[1].equals(null) || Linha[1].equals(""))) {
 	            			P.DadosFisicos.peso=-1;
 	            		}
 	            		else
 	            		P.DadosFisicos.peso=Float.parseFloat(Linha[1]);
 	            	}
 	            	if(Linha[0].equals("IMC")) {
-	            		if(Float.parseFloat(Linha[1])<10 ||Float.parseFloat(Linha[1])>60 ||Linha[1].equals("")) {
+	            		if(Float.parseFloat(Linha[1])<10 ||Float.parseFloat(Linha[1])>60 ||(Linha[1].isEmpty() || Linha[1].equals(null) || Linha[1].equals(""))) {
 	            		P.DadosFisicos.IMC=-1;
 	            		}
 	            		else {
@@ -241,7 +246,7 @@ int iterator=0;
 	            		
 	            	}
 	            	if(Linha[0].equals("BF")) {
-	            		if(Float.parseFloat(Linha[1])<0 ||Float.parseFloat(Linha[1])>60 ||Linha[1].equals("")) {
+	            		if(Float.parseFloat(Linha[1])<0 ||Float.parseFloat(Linha[1])>60 ||(Linha[1].isEmpty() || Linha[1].equals(null) || Linha[1].equals(""))) {
 	            			P.DadosFisicos.B_F=-1;
 	            		}
 	            			else
@@ -251,47 +256,47 @@ int iterator=0;
 	            		P.DadosFisicos.Musculo=Float.parseFloat(Linha[1]);
 	            	}
 	            	if(Linha[0].equals("h2o")) {
-	            		if(Float.parseFloat(Linha[1])<70 ||Float.parseFloat(Linha[1])>80 ||Linha[1].equals("")) {
+	            		if(Float.parseFloat(Linha[1])<70 ||Float.parseFloat(Linha[1])>80 ||(Linha[1].isEmpty() || Linha[1].equals(null) || Linha[1].equals(""))) {
 	            		P.DadosFisicos.h20=-1;
 	            		}
 	            		else
 	            			P.DadosFisicos.h20=Float.parseFloat(Linha[1]);
 	            	}
 	            	if(Linha[0].equals("osso")) {
-	            		if(Float.parseFloat(Linha[1])<-4 ||Float.parseFloat(Linha[1])>2 ||Linha[1].equals("")) {
+	            		if(Float.parseFloat(Linha[1])<-4 ||Float.parseFloat(Linha[1])>2 ||(Linha[1].isEmpty() || Linha[1].equals(null) || Linha[1].equals(""))) {
 	            			P.DadosFisicos.osso=-5;
 	            		}	
 	            			else
 	            		P.DadosFisicos.osso=Float.parseFloat(Linha[1]);
 	            	}
 	            	if(Linha[0].equals("Idade_meta")) {
-	            		if(Float.parseFloat(Linha[1])<13||Float.parseFloat(Linha[1])>100 ||Linha[1].equals("")) {
+	            		if(Float.parseFloat(Linha[1])<13||Float.parseFloat(Linha[1])>100 ||(Linha[1].isEmpty() || Linha[1].equals(null) || Linha[1].equals(""))) {
 	            			P.DadosFisicos.Idade_Metabolica=-1;
 	            		}
 	            		else
 	            		P.DadosFisicos.Idade_Metabolica=Float.parseFloat(Linha[1]);
 	            	}
 	            	if(Linha[0].equals("Metablismo_basal")) {
-	              		if(Float.parseFloat(Linha[1])<110||Float.parseFloat(Linha[1])>(10000)||Linha[1].equals("")) {
+	              		if(Float.parseFloat(Linha[1])<110||Float.parseFloat(Linha[1])>(10000)||(Linha[1].isEmpty() || Linha[1].equals(null) || Linha[1].equals(""))) {
 	              			P.DadosFisicos.Metabolismo_basal=-1;
 	              		}
 	              		
 	         		P.DadosFisicos.Metabolismo_basal=Float.parseFloat(Linha[1]);
 	            	}
 	            	if(Linha[0].equals("Gordura_visceral")) {
-	            		if(Float.parseFloat(Linha[1])<110||Float.parseFloat(Linha[1])>(10000)||Linha[1].equals("")) {
+	            		if(Float.parseFloat(Linha[1])<110||Float.parseFloat(Linha[1])>(10000)||(Linha[1].isEmpty() || Linha[1].equals(null) || Linha[1].equals(""))) {
 	            			P.DadosFisicos.Gordura_Visceral=-1;
 	            		}
 	            		P.DadosFisicos.Gordura_Visceral=Float.parseFloat(Linha[1]);
 	            	}
 	            	if(Linha[0].equals("Profissao")) {
-	            		if(Linha[1].equals("")||Linha[1].length()>30||Linha[1].length()<7) {
+	            		if((Linha[1].isEmpty() || Linha[1].equals(null) || Linha[1].equals(""))||Linha[1].length()>30||Linha[1].length()<7) {
 	            			P.Profisao="Error";
 	            		}
 	            		P.Profisao=Linha[1];
 	            	}
 	            	if(Linha[0].equals("Sexo")) {
-	            		if(Linha[1].equals("")||!Linha[1].equals("Masculino")||!Linha[1].equals("Feminino")) {
+	            		if((Linha[1].isEmpty() || Linha[1].equals(null) || Linha[1].equals(""))||!Linha[1].equals("Masculino")||!Linha[1].equals("Feminino")) {
 	            			P.sexo="error";
 	            		}
 	            		P.sexo=Linha[1];

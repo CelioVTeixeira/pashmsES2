@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class CSVReaderLerdadosNut {
 
-	ArrayList<Produto> lerdados(String csvFile) throws FileNotFoundException, IOException {
+	ArrayList<Produto> lerdados(String csvFile) throws Exception {
 		ArrayList<Produto> Produtos=new ArrayList<Produto>();
 		//  String csvFile = "D:/Users/Andre Dias/Desktop/ES2/CALCULOS.csv";
 	        String line = "";
@@ -21,12 +21,14 @@ int iterator=0;
 	              
 	            	String[] Prod = line.split(cvsSplitBy);
 	Produto P=new Produto();
-	Produtos.add(P);
-		
 	P.id_prod=Prod[0];
 	P.Nome=Prod[1];
 	P.Lista_Calculo=Prod;
+	   System.out.println("Lista_Calculo:"+P.Lista_Calculo.length);
 	P.converterparafloat();
+	Produtos.add(P);
+			
+	
 	iterator++;
 	/*
 	Dose_Prod D_P = new Dose_Prod();
@@ -51,21 +53,7 @@ int iterator=0;
 	       */
 			return Produtos; 
 	     
-	    	/*
-	        String csvFile2 = "D:ficha.csv";
-	   	 String line2 = "";
-	        String cvsSplitBy2 = ",";
-	        try (BufferedReader br = new BufferedReader(new FileReader(csvFile2))) {
-	   int iterator=0;
-	            while (((line2 = br.readLine()) != null)) {
-	            	
-	            	
-	            	String[] Linha = line2.split(cvsSplitBy2);
-	            	  System.out.println("" + Linha[0] + " , " + Linha[1] + "");
-	            }
-	            }
-	        
-*/	    	
+	   	
 	}
 	
 	
