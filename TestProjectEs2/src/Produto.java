@@ -68,7 +68,7 @@ public class Produto {
 					 else
 						 Lista_calculofloat.add(Float.parseFloat(Lista_Calculo[i]));
 					// Lista_calculofloat.set(i,Float.parseFloat(Lista_Calculo[i]));
-					 
+					 System.out.println("heyyyyyyyyyyyyyyyyyyyyyy");
 				 }
 				 
 				 else
@@ -79,6 +79,7 @@ public class Produto {
 						 
 						 else
 							 Lista_calculofloat.add(Float.parseFloat(Lista_Calculo[i]));
+						 System.out.println("heyyyyyyyyyyyyyyyyyyyyyy");
 						 
 					 }
 					 else
@@ -89,7 +90,7 @@ public class Produto {
 					 
 					 else
 						 Lista_calculofloat.add(Float.parseFloat(Lista_Calculo[i]));
-					 
+					 System.out.println("heyyyyyyyyyyyyyyyyyyyyyy");
 				 }
 				 else
 					 if(i==10 || i==13 || i==26) {
@@ -214,7 +215,7 @@ public class Produto {
 																 }
 																 else
 																	 Lista_calculofloat.add(Float.parseFloat(Lista_Calculo[i]));
-																 
+																 System.out.println("333333333333");									 
 																 
 															 }
 															 else
@@ -266,7 +267,7 @@ public class Produto {
 		 }
 		 
 			int j=2;
-			System.out.println("Listaindice 4:"+Lista_calculofloat.get(4));
+			System.out.println("Listaindice 4:"+Lista_calculofloat.get(41));
 			
 		 
 		 

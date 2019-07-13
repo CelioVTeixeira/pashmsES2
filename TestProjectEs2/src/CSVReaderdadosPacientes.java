@@ -138,12 +138,9 @@ public class CSVReaderdadosPacientes {
             		//P.Profisao=Linha[1];
             	}
             	if(Linha[0].equals("Sexo")) {
-            		if(Linha[1].isEmpty() || Linha[1]==null||Linha[1].equals(null)||!Linha[1].equals("Masculino")||!Linha[1].equals("Feminino")) {
-            			throw new ExceptionError_Sexo();
-            		}
-            		else {
+            		
             		P.sexo=Linha[1];
-            		}
+            		
             	}
             	if(Linha.length>1) {
             		// System.out.println("----------Valor:" + Linha[1]);

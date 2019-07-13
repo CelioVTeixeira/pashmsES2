@@ -3891,7 +3891,7 @@ void test_IDNut_42_ok() throws Exception  {
 	//P.Nome_Pacient	
 }
 	
-
+@Test
 void test_IDNut_43_ok() throws Exception  {
 	 Produto P=null;
 	CSVReaderLerdadosNut CSV = new CSVReaderLerdadosNut();
@@ -3912,7 +3912,26 @@ void test_IDNut_43_ok() throws Exception  {
 }
 	
 
+@Test
+void testPlanoAlimentar_TipoRefeição() throws Exception {
+	
+	
+	
+	try {
+		CSVReaderLerdadosPlanoAlimentar CSV=new CSVReaderLerdadosPlanoAlimentar();
+		Plano P = CSV.lerdados("D://Fichascsv//PlanoAlimentar.csv");
+		P.Habitos.get(1).getTipo_Refeição();
+		assertEquals(P.Habitos.get(1).getTipo_Refeição(),"Levantar");
+	} catch (IOException e) {
+		// TODO Austo-generated catch block
+		e.printStackTrace();
+	}
+	//System.out.println("DadosCLiente_Idade:"+P.getidade());	
+	
 
+	
+	
+}
 
 
 
