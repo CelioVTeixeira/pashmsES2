@@ -185,7 +185,7 @@ void test_idade_ok_0() throws  Exception {
 		CSVReaderdadosPacientes CSV = new CSVReaderdadosPacientes();
 		try {
 			P=CSV.lerdadospaciente("D://Fichascsv//ficha_ok.csv");
-			assertEquals(400,P.DadosFisicos.getPeso());
+			assertEquals(90,P.DadosFisicos.getPeso());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -3252,7 +3252,7 @@ void test_IDNut_10_ok() throws Exception  {
 		Prodrutos = CSV.lerdados("D://Fichascsv//ficha_nut_ok.csv");
 		P=Prodrutos.get(0);
 		Float Teste=P.Lista_calculofloat.get(10);
-		assertEquals(0.00f,Teste,0.01);
+		assertEquals(0.2f,Teste,0.01);
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -3937,9 +3937,29 @@ void testPlanoAlimentar_TipoRefeição() throws Exception {
 
 
 
+@Test
+void teste_Equação_Harris_Harrington() {
+	  CSVReaderdadosPacientes CSVPaciente= new CSVReaderdadosPacientes();
+	  Paciente Paciente;
+	  try {
+		Paciente=CSVPaciente.lerdadospaciente("D://Fichascsv//ficha_ok.csv");
+		  Float Gasto_Total_Energetico = null;
+		  Gasto_Total_Energetico=Paciente.caculaHarrisBenedict();
+		  assertEquals((float)1971.5,Gasto_Total_Energetico,0.01);
+		
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	 
+	
+	
+}
 
 
 
+
+/*
 @Test
 void test_IDNut_0_null() throws Exception  {
 	 Produto P=null;
@@ -3956,6 +3976,7 @@ void test_IDNut_0_null() throws Exception  {
 
 
 } 
+*/
 }
 
 

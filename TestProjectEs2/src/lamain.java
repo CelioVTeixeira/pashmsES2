@@ -20,7 +20,10 @@ public class lamain {
 	  Paciente=CSVPaciente.lerdadospaciente("D://Fichascsv//ficha_ok.csv");
 	  Float Gasto_Total_Energetico = null;
 	  Gasto_Total_Energetico=Paciente.caculaHarrisBenedict();
-	  System.out.println("Gasto_total_Ener:"+Gasto_Total_Energetico);	
+	  Paciente.P_Atual=P;
+	  System.out.println("Gasto_total_Energetico :"+Gasto_Total_Energetico+"Para manter o peso de:"+Paciente.DadosFisicos.peso);	
+	  System.out.println("Gasto_Energias_Plano_Atual:"+Paciente.P_Atual.Totais.get(1)+"Kj");
+	  System.out.println("O paciente esta a consumir:"+(float)(Float.parseFloat(Paciente.P_Atual.Totais.get(1))/Gasto_Total_Energetico*100)+"%    "+ "em relação ao que devia consumir para manter o peso de:"+Paciente.DadosFisicos.peso);
 	//Gasto_Total_Energetico=Paciente.caculaHarrisBenedict();
 	  
 	}

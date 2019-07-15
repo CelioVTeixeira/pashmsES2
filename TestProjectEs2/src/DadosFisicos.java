@@ -6,6 +6,7 @@ public class DadosFisicos {
 	float IMC;
 	float B_F;
 	float Musculo;
+	
 	public float getPeso() {
 		return peso;
 	}
