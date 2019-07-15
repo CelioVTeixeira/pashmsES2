@@ -23,7 +23,7 @@ public class CSVReaderdadosPacientes {
         
 		System.out.println("CSV:"+csvFile2);
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile2))) {
-   int iterator=0;
+        int iterator=0;
             while (((line2 = br.readLine()) != null)) {
             	
             	
@@ -31,7 +31,7 @@ public class CSVReaderdadosPacientes {
             //	System.out.println("lenght"+Linha.length);	
             	if(Linha[0].equals("Nome")) {
             		if( Linha[1].length()>20 ||Linha[1].length()<3  ) {
-            			System.out.println("Passei aquiNOME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            			System.out.println("NOME a ser lido!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             			throw new ExceptionError_Nome();
             		}
             		else {
@@ -40,7 +40,7 @@ public class CSVReaderdadosPacientes {
             	}
             	if(Linha[0].equals("Idade")) {
             		if((Linha[1].isEmpty() || Linha[1]==null)||Linha[1].equals(null)||Integer.parseInt(Linha[1])>130 || Integer.parseInt(Linha[1])<13 ) {
-            			System.out.println("Passei aquiIdade!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            			System.out.println("Idade a ser!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             			throw new ExceptionError_Idade();
             			
             		}

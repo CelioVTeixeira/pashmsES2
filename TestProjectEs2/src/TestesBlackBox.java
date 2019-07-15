@@ -1,3 +1,4 @@
+import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.FileNotFoundException;
@@ -733,7 +734,7 @@ void test_idade_ok_0() throws  Exception {
 		CSVReaderdadosPacientes CSV = new CSVReaderdadosPacientes();
 		try {
 			P=CSV.lerdadospaciente("D://Fichascsv//ficha_ok.csv");
-			assertEquals("AndreAndre",P.getNome());
+			assertEquals("AndreRodrigues",P.getNome());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -3029,7 +3030,7 @@ void test_idade_ok_0() throws  Exception {
 		try {
 			P=CSV.lerdadospaciente("D://Fichascsv//ficha_ok.csv");
 			System.out.println("DadosCLiente_Idade:"+P.getidade());	
-			assertEquals("AndreAndre",P.getNome());
+			assertEquals("AndreRodrigues",P.getNome());
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -3945,7 +3946,10 @@ void teste_Equação_Harris_Harrington() {
 		Paciente=CSVPaciente.lerdadospaciente("D://Fichascsv//ficha_ok.csv");
 		  Float Gasto_Total_Energetico = null;
 		  Gasto_Total_Energetico=Paciente.caculaHarrisBenedict();
-		  assertEquals((float)1971.5,Gasto_Total_Energetico,0.01);
+		  if(Gasto_Total_Energetico!=1971.5) {
+			  fail();
+		  }
+		  //assertEquals((float)1971.5,Gasto_Total_Energetico,0.01);
 		
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
@@ -3956,6 +3960,27 @@ void teste_Equação_Harris_Harrington() {
 	
 }
 
+@Test
+void teste_TotalKJ_PlanoAlimentar() {
+	  CSVReaderdadosPacientes CSVPaciente= new CSVReaderdadosPacientes();
+	  Paciente Paciente;
+	  try {
+		CSVReaderLerdadosPlanoAlimentar CSV=new CSVReaderLerdadosPlanoAlimentar();
+		Plano P = CSV.lerdados("D://Fichascsv//PlanoAlimentar.csv");
+		P.Totais.get(1);
+		  if(Float.parseFloat(P.Totais.get(1))!=3915.0) {
+			  fail();
+		  }
+		  //assertEquals((float)1971.5,Gasto_Total_Energetico,0.01);
+		
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	 
+	
+	
+}
 
 
 

@@ -21,9 +21,29 @@ public class lamain {
 	  Float Gasto_Total_Energetico = null;
 	  Gasto_Total_Energetico=Paciente.caculaHarrisBenedict();
 	  Paciente.P_Atual=P;
+	  System.out.println("Nome_Paciente:"+Paciente.getNome());
+	  System.out.println("Sexo:"+Paciente.getsexo());
+	  System.out.println("Idade:"+ Paciente.getidade());
+	  System.out.println("Peso:"+ Paciente.DadosFisicos.getPeso());
+	  int i=1;
+	  
+	  while(Paciente.P_Atual.Habitos.size()!=i) {
+		  int j=0;
+		  System.out.println("---------------------------------------------------------------------");
+		  System.out.println("REFEICAO:::"+Paciente.P_Atual.Habitos.get(i).Tipo_Refeição);
+		  System.out.println("---------------------------------------------------------------------");
+		  while(Paciente.P_Atual.Habitos.get(i).Doses_Prod.size()!=j){
+		  System.out.println("Nutrientes"+Paciente.P_Atual.Habitos.get(i).Doses_Prod.get(j).N_Produto);
+		  System.out.println("Nutrientes"+Paciente.P_Atual.Habitos.get(i).Doses_Prod.get(j).Dosagem);
+		  j++;
+		  }
+		  i++;
+	  }
+	  
+	  //System.out.println(Paciente.P_Atual.Habitos.get(0)toString());
 	  System.out.println("Gasto_total_Energetico :"+Gasto_Total_Energetico+"Para manter o peso de:"+Paciente.DadosFisicos.peso);	
 	  System.out.println("Gasto_Energias_Plano_Atual:"+Paciente.P_Atual.Totais.get(1)+"Kj");
-	  System.out.println("O paciente esta a consumir:"+(float)(Float.parseFloat(Paciente.P_Atual.Totais.get(1))/Gasto_Total_Energetico*100)+"%    "+ "em relação ao que devia consumir para manter o peso de:"+Paciente.DadosFisicos.peso);
+	  System.out.println("O paciente esta a consumir:"+Paciente.determina_Relacao_GTE_TotalHabitoAlimentar()+"%    "+ "em relação ao que devia consumir para manter o peso de:"+Paciente.DadosFisicos.peso);
 	//Gasto_Total_Energetico=Paciente.caculaHarrisBenedict();
 	  
 	}

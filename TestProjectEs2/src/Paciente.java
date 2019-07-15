@@ -28,6 +28,7 @@ public void setFator_lesao(float fator_lesao) {
 Plano P_Prescrito;
 float Gasto_Total_Energetico;	
 	
+float Relacao_GTE_TotalHabitoAlimentar;	
 
 void adiciona_PAtual(){
 	
@@ -59,6 +60,12 @@ float caculaHarrisBenedict() {
 	Gasto_Total_Energetico= (float) (655.1 + (9.5*DadosFisicos.peso)+ 1.8*DadosFisicos.Altura-(4.7*idade)*fator_termico*fator_lesao);
 	
 	return Gasto_Total_Energetico;
+	
+}
+
+float determina_Relacao_GTE_TotalHabitoAlimentar() {
+	Relacao_GTE_TotalHabitoAlimentar=(float)(Float.parseFloat(P_Atual.Totais.get(1))/Gasto_Total_Energetico*100);
+	return Relacao_GTE_TotalHabitoAlimentar;
 	
 }
 }
